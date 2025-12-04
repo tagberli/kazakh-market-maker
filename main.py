@@ -7,12 +7,11 @@ import numpy as np
 from datetime import datetime
 import time
 
-exchange = ccxt.binance({
+exchange = ccxt.bybit({
     'enableRateLimit': True,
-    'options': {'defaultType': 'future'}
 })
 
-symbol = 'BTC/USDT'
+symbol = 'BTC/USDT:USDT'
 timeframe = '1m'
 limit = 500
 
