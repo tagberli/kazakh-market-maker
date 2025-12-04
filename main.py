@@ -1,19 +1,18 @@
 # Kazakh Market Maker Prototype — Dec 2025
-# Lightweight execution + spread baseline
+# Kraken version (works in the US)
 
 import ccxt
 import pandas as pd
 import numpy as np
 from datetime import datetime
-import time
 
-exchange = ccxt.bybit({
-    'enableRateLimit': True,
+exchange = ccxt.kraken({
+    'enableRateLimit': True
 })
 
-symbol = 'BTC/USDT:USDT'
+symbol = 'BTC/USD'
 timeframe = '1m'
-limit = 500
+limit = 300
 
 def fetch_ohlcv():
     ohlcv = exchange.fetch_ohlcv(symbol, timeframe, limit=limit)
@@ -27,7 +26,7 @@ def compute_spread(df):
     return float(spread_bps.mean())
 
 if __name__ == "__main__":
-    print("Kazakh Market Maker — Prototype")
+    print("Kazakh Market Maker — Prototype (Kraken)")
     df = fetch_ohlcv()
     avg_spread = compute_spread(df)
     print(f"Avg 1m spread (last {limit} candles): {avg_spread:.2f} bps")
